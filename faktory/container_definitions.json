@@ -1,0 +1,43 @@
+[
+  {
+    "name": "faktory",
+    "image": "contribsys/faktory",
+    "cpu": 0,
+    "memory": 512,
+    "portMappings": [
+      {
+        "containerPort": 7419,
+        "hostPort": 7419,
+        "protocol": "tcp"
+      },
+      {
+        "containerPort": 7420,
+        "hostPort": 7420,
+        "protocol": "tcp"
+      }
+    ],
+    "essential": true,
+    "entryPoint": [
+      "sh",
+      "-c",
+      "/faktory -b 0.0.0.0:7419 -w 0.0.0.0:7420 -e production"
+    ],
+    "environment": [
+      {
+        "name": "FAKTORY_PASSWORD",
+        "value": "esmpub-dev-passward"
+      }
+    ],
+    "mountPoints": [],
+    "volumesFrom": [],
+    "workingDirectory": "/",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/faktory-task",
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
+  }
+]
